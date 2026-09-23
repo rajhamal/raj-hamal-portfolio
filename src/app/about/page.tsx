@@ -354,22 +354,22 @@ export default function AboutPage() {
 
         {/* UK Photo Gallery - Personal University Photos */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="relative h-80 sm:h-[420px] rounded-2xl overflow-hidden shadow-2xs border border-slate-200/80">
+          <div className="relative h-96 sm:h-[480px] rounded-2xl overflow-hidden shadow-2xs border border-slate-200/80">
             <Image
               src="/images/about/bradford-richmond-building.jpg"
               alt="Raj Hamal at Richmond Building, University of Bradford"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover object-top"
+              className="object-cover object-bottom"
             />
           </div>
-          <div className="relative h-80 sm:h-[420px] rounded-2xl overflow-hidden shadow-2xs border border-slate-200/80">
+          <div className="relative h-96 sm:h-[480px] rounded-2xl overflow-hidden shadow-2xs border border-slate-200/80">
             <Image
               src="/images/about/bradford-university-atrium.jpg"
               alt="Raj Hamal at University of Bradford Campus Atrium"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover object-center"
+              className="object-cover object-bottom"
             />
           </div>
         </div>
