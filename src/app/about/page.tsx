@@ -330,25 +330,58 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* UK Photo Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="relative h-56 rounded-2xl overflow-hidden shadow-2xs">
-            <Image
-              src="/images/about/bradford-uk-street-1.jpg"
-              alt="Bradford Street"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="relative h-56 rounded-2xl overflow-hidden shadow-2xs">
-            <Image
-              src="/images/about/bradford-uk-city.jpg"
-              alt="Bradford Architecture"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
+        {/* UK Photo Gallery */}
+        <div className="space-y-3">
+          <span className="text-xs font-mono text-slate-500 uppercase tracking-wider block">University of Bradford & Campus Life</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-2xs group border border-slate-200/80">
+              <Image
+                src="/images/about/bradford-richmond-building.jpg"
+                alt="Raj Hamal at Richmond Building, University of Bradford"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/80 via-slate-900/30 to-transparent p-3 pt-8">
+                <p className="text-xs font-semibold text-white font-poppins">Richmond Building, University of Bradford</p>
+              </div>
+            </div>
+            <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-2xs group border border-slate-200/80">
+              <Image
+                src="/images/about/bradford-university-atrium.jpg"
+                alt="Raj Hamal inside University of Bradford Campus Atrium"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/80 via-slate-900/30 to-transparent p-3 pt-8">
+                <p className="text-xs font-semibold text-white font-poppins">Campus Atrium & Learning Spaces</p>
+              </div>
+            </div>
+            <div className="relative h-48 sm:h-52 rounded-2xl overflow-hidden shadow-2xs group border border-slate-200/80">
+              <Image
+                src="/images/about/bradford-uk-street-1.jpg"
+                alt="Bradford Campus & City Environment"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/80 via-slate-900/30 to-transparent p-3 pt-8">
+                <p className="text-xs font-semibold text-white font-poppins">Bradford Campus Grounds</p>
+              </div>
+            </div>
+            <div className="relative h-48 sm:h-52 rounded-2xl overflow-hidden shadow-2xs group border border-slate-200/80">
+              <Image
+                src="/images/about/bradford-uk-city.jpg"
+                alt="Bradford Architecture"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/80 via-slate-900/30 to-transparent p-3 pt-8">
+                <p className="text-xs font-semibold text-white font-poppins">Bradford Architecture & City</p>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -16,6 +16,14 @@ export interface Profile {
     transition: string;
     vision: string;
   };
+  narrativeStages?: {
+    step: string;
+    title: string;
+    subtitle: string;
+    summary: string;
+    highlights: string[];
+    focusPills: string[];
+  }[];
   metrics: {
     label: string;
     value: string;

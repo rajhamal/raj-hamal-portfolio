@@ -48,5 +48,33 @@ export const experienceData: ExperienceItem[] = [
       "Process Standardization"
     ],
     operationalImpact: "Earned promotion to full-time Tour Manager within 6 months through rigorous tracking of client booking records and social media performance analysis."
+  },
+  {
+    id: "freelance-digital-marketing",
+    role: "Digital Marketing & Social Media Management",
+    company: "Independent / Freelance",
+    location: "Bradford / Remote",
+    period: "2023 — Present",
+    type: "Independent / Freelance",
+    responsibilities: [
+      "Managed social media activities including content planning, publishing, audience engagement, and performance monitoring.",
+      "Developed digital content and campaigns aligned with brand and business objectives.",
+      "Monitored engagement, reach, audience behaviour, and campaign metrics to understand content and campaign performance.",
+      "Supported digital and paid social campaigns where required, focusing on execution, measurement, and optimisation.",
+      "Worked with tools including Meta Business Suite, Meta Ads Manager, Google Analytics, Google Tag Manager, Looker Studio, and Microsoft Clarity.",
+      "Used digital performance data to identify patterns, evaluate results, and provide practical recommendations for improving content and campaigns."
+    ],
+    analyticalSkills: [
+      "Digital Marketing",
+      "Social Media Management",
+      "Content Strategy",
+      "Audience Analysis",
+      "Campaign Tracking",
+      "Performance Reporting",
+      "GA4",
+      "GTM",
+      "Looker Studio"
+    ],
+    operationalImpact: "Working independently in digital marketing introduced me to a different side of business: understanding audiences, communicating through digital channels, measuring engagement, and using performance information to improve decisions."
   }
 ];

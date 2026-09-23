@@ -14,10 +14,48 @@ export const profileData: Profile = {
   currentEducation: "MSc Applied Artificial Intelligence & Data Analytics, University of Bradford",
   bio: "Postgraduate Data Analytics student at the University of Bradford. Blending 3+ years of high-altitude logistics & financial tracking experience in Nepal with modern data science tooling—including SQL, Tableau, Python, R, and Machine Learning—to drive business optimization.",
   narrative: {
-    origin: "Spent over three years managing complex logistics, budgets, and teams of 10+ for 40+ international expeditions in Nepal. Created Google Sheets tracking systems for permit pipelines, guide assignments, and invoice reconciliations.",
-    transition: "Recognized that operational bottlenecks and financial discrepancies are fundamentally data problems. Pursued independent data analytics training, earning the Google Data Analytics Professional Certificate and building real-world analytics project evidence.",
-    vision: "Combining operational rigor, business understanding, and postgraduate training in Applied AI and Data Analytics to help organizations optimize performance, visualize metrics, and make data-driven decisions."
+    origin: "Early operational experience in tourism and logistics developed a practical, ground-level understanding of customers, suppliers, team coordination, changing conditions, and real-world constraints.",
+    transition: "Digital marketing and performance-focused initiatives introduced structured performance measurement, customer behavior analysis, tracking, experimentation, and data-driven business decisions.",
+    vision: "Expanding technical depth across Data Analytics, Business Intelligence, and Applied AI—combining real-world business understanding with technical analysis to drive practical outcomes."
   },
+  narrativeStages: [
+    {
+      step: "01",
+      title: "Understanding real-world problems",
+      subtitle: "Operations & Ground-Level Execution",
+      summary: "Tourism, customers, suppliers, teams and operations.",
+      highlights: [
+        "Tourism operations & client management",
+        "Supplier & logistics coordination",
+        "Team leadership under live constraints"
+      ],
+      focusPills: ["Tourism Operations", "Suppliers", "Logistics", "Teams"]
+    },
+    {
+      step: "02",
+      title: "Learning to work with data",
+      subtitle: "Performance Marketing & Customer Insights",
+      summary: "Performance marketing, measurement, experimentation and understanding customer behaviour.",
+      highlights: [
+        "Performance marketing & campaign tracking",
+        "Conversion & metric measurement",
+        "Experimentation & customer behavior data"
+      ],
+      focusPills: ["Performance Marketing", "Measurement", "Experimentation", "Customer Behavior"]
+    },
+    {
+      step: "03",
+      title: "Moving toward analytics & AI",
+      subtitle: "Analytics, BI & Practical AI",
+      summary: "Data analytics, business intelligence and practical AI applied to real business problems.",
+      highlights: [
+        "SQL, Python, R & BI Dashboards",
+        "Data Analytics & Decision Support",
+        "Practical AI applied to business workflows"
+      ],
+      focusPills: ["Data Analytics", "Business Intelligence", "Applied AI", "Business Problems"]
+    }
+  ],
   metrics: [
     {
       label: "Operations & Analytics",

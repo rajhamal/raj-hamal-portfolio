@@ -25,59 +25,90 @@ export default function HomePage() {
       {/* 1. HERO SECTION */}
       <HomeHero />
 
-      {/* 2. ABOUT / CAREER TRANSITION NARRATIVE */}
+      {/* 2. ABOUT / CAREER NARRATIVE SECTION */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8">
+        <div className="relative rounded-3xl bg-slate-50/70 border border-slate-200/60 p-6 sm:p-8 md:p-10 space-y-6 sm:space-y-8 overflow-hidden shadow-2xs">
+          {/* Subtle background ambient glow */}
+          <div className="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 bg-blue-100/50 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 -mb-16 -ml-16 w-72 h-72 bg-indigo-50/50 rounded-full blur-3xl pointer-events-none" />
 
-      {/* 3. ABOUT / CAREER TRANSITION NARRATIVE */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="uiverse-card-glass rounded-2xl p-8 sm:p-10">
-          <SectionHeader
-            badge="Career Narrative"
-            title="Operational Problem Solver Transformed into Data Analyst"
-            subtitle="Connecting 3+ years of tourism logistics, supplier management, and team leadership with postgraduate Applied AI and Data Analytics training."
-          />
+          {/* Header */}
+          <div className="space-y-3 max-w-3xl relative z-10">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-100 inline-block">
+              Career Narrative
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-[1.15] uppercase text-slate-900">
+              From Nepal to the UK,<br />
+              <span className="text-blue-700">solving real problems</span><br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-600">through data.</span>
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans pt-1 max-w-2xl">
+              Connecting hands-on operational leadership and performance marketing experience with postgraduate Data Analytics and Applied AI study in the UK.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-            <div className="bg-slate-50/90 p-6 rounded-xl border border-slate-100 space-y-3">
-              <div className="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">
-                01
-              </div>
-              <h3 className="font-display font-bold text-slate-900 text-lg">Tourism Operations</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                {profileData.narrative.origin}
-              </p>
-            </div>
-
-            <div className="bg-slate-50/90 p-6 rounded-xl border border-slate-100 space-y-3">
-              <div className="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">
-                02
-              </div>
-              <h3 className="font-display font-bold text-slate-900 text-lg">Data & Analytics</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                {profileData.narrative.transition}
-              </p>
-            </div>
-
-            <div className="bg-slate-50/90 p-6 rounded-xl border border-slate-100 space-y-3">
-              <div className="w-9 h-9 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">
-                03
-              </div>
-              <h3 className="font-display font-bold text-slate-900 text-lg">Applied AI & Future</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                {profileData.narrative.vision}
-              </p>
+          {/* Clean Stepper Progression Line */}
+          <div className="py-4 border-y border-slate-200/80 relative z-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+              {[
+                { step: '01', location: 'Nepal', label: 'Operations' },
+                { step: '02', location: 'Digital', label: 'Marketing' },
+                { step: '03', location: 'Data & AI', label: 'Analytics' },
+                { step: '04', location: 'UK', label: 'Future' },
+              ].map((item) => (
+                <div key={item.step} className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono font-bold text-blue-700">{item.step}</span>
+                    <span className="h-[1px] flex-1 bg-blue-200/80" />
+                  </div>
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 font-display">{item.location}</h4>
+                  <p className="text-[11px] sm:text-xs text-slate-500 font-medium">{item.label}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
-            <span className="text-xs text-slate-500 font-medium">
-              Targeting Graduate Data Analyst, Business Intelligence, and Applied AI Roles across the UK.
-            </span>
+          {/* 3 Narrative Stages (Clean text columns with subtle left accent) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 relative z-10">
+            {[
+              {
+                num: '01',
+                title: 'Understanding real-world problems',
+                description: 'Tourism, customers, suppliers, teams and operations.'
+              },
+              {
+                num: '02',
+                title: 'Learning to work with data',
+                description: 'Performance marketing, measurement, experimentation and understanding customer behaviour.'
+              },
+              {
+                num: '03',
+                title: 'Moving toward analytics & AI',
+                description: 'Data analytics, business intelligence and practical AI applied to real business problems.'
+              },
+            ].map((stage) => (
+              <div key={stage.num} className="border-l-2 border-blue-600/70 pl-4 py-1 space-y-2 hover:border-blue-700 transition-colors">
+                <span className="text-xs font-mono font-bold text-blue-700 block">
+                  Stage {stage.num}
+                </span>
+                <h3 className="font-display font-bold text-slate-900 text-base sm:text-lg leading-snug">
+                  {stage.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {stage.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Footer CTA */}
+          <div className="pt-2 flex justify-end relative z-10 border-t border-slate-200/60">
             <Link
               href="/about"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-blue-700 hover:text-blue-800 transition-colors pt-2"
             >
-              Read Full Career Background
-              <ArrowRight className="w-3.5 h-3.5" />
+              Explore the full story
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -86,15 +117,15 @@ export default function HomePage() {
       {/* 4. FEATURED PROJECTS */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          badge="Verified Project Evidence"
-          title="Featured Case Studies & Dashboards"
-          subtitle="Explore end-to-end data analytics projects using government statistics, retail transaction datasets, and market intelligence."
+          badge="Selected Work"
+          title="Projects that show how I work with data."
+          subtitle="A selection of analytics projects focused on turning raw information into clear findings, useful visualizations, and business insight."
           action={
             <Link
               href="/projects"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-800"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-800 transition-colors"
             >
-              View All Projects Grid
+              Explore all projects
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           }
@@ -109,7 +140,7 @@ export default function HomePage() {
 
       {/* 5. PROFESSIONAL EXPERIENCE SNAPSHOT */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="uiverse-card-glass rounded-2xl p-8 sm:p-10">
+        <div className="rounded-3xl bg-slate-50/80 p-6 sm:p-10 md:p-12 border border-slate-200/80 shadow-2xs space-y-6">
           <SectionHeader
             badge="Work History"
             title="Professional Experience"
@@ -125,24 +156,24 @@ export default function HomePage() {
             }
           />
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             {experienceData.map((exp) => (
-              <div key={exp.id} className="p-6 rounded-xl bg-slate-50/90 border border-slate-100 hover:border-slate-200 transition-colors">
+              <div key={exp.id} className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/70 hover:border-blue-200 transition-colors shadow-2xs">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                   <div>
                     <h3 className="font-display font-bold text-slate-900 text-lg">{exp.role}</h3>
                     <p className="text-xs text-blue-700 font-semibold">{exp.company} • {exp.location}</p>
                   </div>
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-white text-slate-700 border border-slate-200/80 shadow-2xs self-start sm:self-auto">
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-blue-50 text-blue-700 border border-blue-100 self-start sm:self-auto">
                     {exp.period}
                   </span>
                 </div>
-                <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
                   {exp.operationalImpact}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {exp.analyticalSkills.map((skill) => (
-                    <span key={skill} className="px-2.5 py-0.5 text-[11px] font-medium bg-white text-slate-700 rounded-md border border-slate-200 shadow-2xs">
+                    <span key={skill} className="px-2.5 py-1 text-[11px] font-medium bg-slate-100/80 text-slate-700 rounded-lg border border-slate-200/60">
                       {skill}
                     </span>
                   ))}
@@ -155,180 +186,231 @@ export default function HomePage() {
 
       {/* 6. EDUCATION & LEARNING */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          badge="Education & Learning"
-          title="From Tourism to Data & AI"
-          subtitle="A progression from tourism and business foundations to postgraduate study in applied artificial intelligence and data analytics."
-        />
-
-        <EducationTimeline />
-      </section>
-
-      {/* 7. TECHNICAL SKILLS GRID */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl border border-slate-200/90 p-8 sm:p-10 shadow-subtle">
+        <div className="rounded-3xl bg-white p-6 sm:p-10 md:p-12 border border-slate-200/80 shadow-xs">
           <SectionHeader
-            badge="Tool Stack & Expertise"
-            title="Technical & Analytical Capabilities"
-            subtitle="Practical mastery across business intelligence platforms, database querying, spreadsheets, and statistical analysis."
-            action={
-              <Link
-                href="/skills"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-800"
-              >
-                View Skill Matrix
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            }
+            badge="Education & Learning"
+            title="From Tourism to Data & AI"
+            subtitle="A progression from tourism and business foundations to postgraduate study in applied artificial intelligence and data analytics."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <EducationTimeline />
+        </div>
+      </section>
+
+      {/* 7. TECHNICAL & ANALYTICAL CAPABILITIES */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="rounded-3xl bg-slate-50/70 p-6 sm:p-10 md:p-12 border border-slate-200/70 shadow-2xs">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8">
+            <SectionHeader
+              badge="Capabilities"
+              title="Tools I use to turn data into insight."
+              subtitle="A practical toolkit spanning analytics, visualization, tracking, databases, and business intelligence."
+            />
+
+            <Link
+              href="/skills"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-800 transition-colors shrink-0"
+            >
+              View full skill matrix
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {skillsData.slice(0, 3).map((category, idx) => (
-              <div key={idx} className="bg-slate-50 p-6 rounded-xl border border-slate-100 space-y-3">
-                <h3 className="font-display font-bold text-slate-900 text-base border-b border-slate-200 pb-2">
-                  {category.categoryName}
-                </h3>
-                <ul className="space-y-2.5">
-                  {category.skills.map((skill, sIdx) => (
-                    <li key={sIdx} className="space-y-0.5">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="font-semibold text-slate-800 flex items-center">
-                          <ToolIcon name={skill.name} size={14} className="mr-1.5" />
+              <div key={idx} className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/70 shadow-2xs space-y-4">
+                <div className="flex items-center gap-3 border-b border-slate-100 pb-3">
+                  <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+
+                  <h3 className="font-display font-bold text-base text-slate-900">
+                    {category.categoryName}
+                  </h3>
+                </div>
+
+                <div className="space-y-3.5">
+                  {category.skills.map((skill) => (
+                    <div
+                      key={skill.name}
+                      className="flex items-start gap-3"
+                    >
+                      <ToolIcon
+                        name={skill.name}
+                        size={17}
+                        className="mt-0.5 shrink-0"
+                      />
+
+                      <div>
+                        <p className="text-xs sm:text-sm font-semibold text-slate-800">
                           {skill.name}
-                        </span>
-                        {skill.level && (
-                          <span className={`px-2 py-0.5 rounded text-[10px] font-semibold ${skill.level === 'Proficient' ? 'bg-emerald-50 text-emerald-700' : 'bg-blue-50 text-blue-700'}`}>
-                            {skill.level}
-                          </span>
-                        )}
+                        </p>
+
+                        <p className="text-xs text-slate-500 leading-relaxed mt-0.5">
+                          {skill.context}
+                        </p>
                       </div>
-                      <p className="text-[11px] text-slate-500 leading-tight">{skill.context}</p>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 8. CERTIFICATIONS */}
+      {/* 8. CERTIFICATION */}
       {googleCert && (
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-blue-950 via-slate-900 to-blue-900 text-white rounded-2xl p-8 sm:p-10 shadow-elevated relative overflow-hidden">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 relative z-10">
-              <div className="space-y-4 max-w-2xl">
-                <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white text-slate-900 text-xs font-poppins font-bold shadow-md">
-                  <Image src="/icons/google-certified.png" alt="Google Certified" width={26} height={26} className="object-contain shrink-0" />
-                  <span>Google Certified Professional</span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-poppins font-extrabold tracking-tight text-white leading-tight">
-                  {googleCert.title}
-                </h2>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {googleCert.description}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {googleCert.topics.map((t, idx) => (
-                    <span key={idx} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800/90 text-slate-200 border border-slate-700/80">
-                      <ToolIcon name={t} size={16} />
-                      {t}
-                    </span>
-                  ))}
-                </div>
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 px-6 py-10 sm:px-10 sm:py-12 lg:px-12 shadow-xl border border-blue-600/30">
+
+            {/* Subtle background detail */}
+            <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-32 -left-20 w-72 h-72 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
+
+            <div className="relative flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
+
+              {/* Colorful Official Logo */}
+              <div className="bg-white rounded-2xl px-6 py-3 shadow-md border border-white/40 flex items-center justify-center">
+                <Image
+                  src="/icons/google-certified.png"
+                  alt="Google Certified Official Logo"
+                  width={180}
+                  height={55}
+                  className="object-contain h-10 sm:h-12 w-auto"
+                />
               </div>
 
-              <div className="shrink-0 flex flex-col items-center md:items-end gap-4 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-                <div className="w-32 h-32 sm:w-36 sm:h-36 bg-white rounded-2xl p-3.5 shadow-xl flex items-center justify-center border-2 border-white/20">
-                  <Image
-                    src="/icons/google-certified.png"
-                    alt="Google Certified Official Badge"
-                    width={120}
-                    height={120}
-                    className="object-contain hover:scale-105 transition-transform"
-                  />
-                </div>
-                <div className="text-center md:text-right">
-                  <div className="text-xs font-mono text-slate-300">Verified Credential</div>
-                  <div className="text-xs font-mono text-slate-400 mt-0.5">Issued: {googleCert.issueDate}</div>
-                </div>
+              <div className="space-y-3">
+                <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-blue-100 bg-blue-800/60 px-3 py-1 rounded-full border border-blue-600/60 inline-block">
+                  Professional Credential
+                </span>
+
+                <h2 className="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                  {googleCert.title}
+                </h2>
+
+                <p className="text-xs sm:text-sm font-mono text-blue-100">
+                  Issued by Google <span className="mx-2 text-blue-300">•</span> {googleCert.issueDate}
+                </p>
+
+                <p className="max-w-xl mx-auto text-sm sm:text-base leading-relaxed text-blue-50/90 font-sans pt-1">
+                  A verified credential supporting my foundation in digital marketing, analytics, and data-driven decision making.
+                </p>
+              </div>
+
+              {/* Action Link */}
+              <div className="pt-2">
                 <a
                   href={googleCert.credentialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-poppins font-semibold text-xs rounded-lg transition-colors shadow-sm"
+                  className="
+                    group
+                    inline-flex items-center justify-center gap-2
+                    rounded-xl
+                    bg-white
+                    px-6 py-3
+                    text-sm font-bold text-blue-700
+                    shadow-sm
+                    transition-all duration-200
+                    hover:bg-blue-50 hover:shadow-md
+                  "
                 >
-                  Verify Certificate
-                  <ArrowRight className="w-4 h-4" />
+                  Verify Credential
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </a>
               </div>
+
             </div>
           </div>
         </section>
       )}
 
-      {/* 9. ADDITIONAL PROJECT (Bellabeat Capstone Spotlight) */}
+      {/* 9. ADDITIONAL PROJECTS */}
       {additionalProjects.length > 0 && (
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Ongoing Capstone"
-            title="Additional Project Evidence"
-            subtitle="Active analytics exploration in Google BigQuery utilizing cloud data warehousing."
-          />
-          <div className="max-w-xl">
-            {additionalProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} featuredMode={false} />
-            ))}
+          <div className="pt-2">
+            <div className="flex items-center justify-between gap-4 mb-6">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">
+                  More Work
+                </span>
+
+                <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-slate-950 mt-2">
+                  More analytical work
+                </h2>
+              </div>
+
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-800"
+              >
+                View projects
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            <div className="max-w-2xl">
+              {additionalProjects.slice(0, 1).map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  featuredMode={false}
+                />
+              ))}
+            </div>
           </div>
         </section>
       )}
 
       {/* 10. CONTACT CTA */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl border border-slate-200 p-8 sm:p-12 text-center shadow-subtle space-y-5">
-          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center mx-auto mb-2">
-            <Mail className="w-6 h-6 text-blue-600" />
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 tracking-tight">
-            Let's Discuss Data & AI Opportunities
-          </h2>
-          <p className="text-sm text-slate-600 max-w-xl mx-auto leading-relaxed">
-            I am actively seeking graduate and entry-level opportunities in Data Analytics, Business Intelligence, and Applied AI across the UK. Feel free to reach out directly or inspect my resume.
-          </p>
+        <div className="relative overflow-hidden border-y border-slate-200 py-16 sm:py-20">
+          <div className="max-w-3xl mx-auto text-center">
 
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-sm rounded-lg transition-all shadow-xs"
-            >
-              Get in Touch
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <a
-              href={`mailto:${profileData.email}`}
-              className="inline-flex items-center gap-2 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-sm rounded-lg transition-colors font-mono"
-            >
-              <Image src="/icons/gmail.png" alt="Email" width={16} height={16} className="object-contain" />
-              {profileData.email}
-            </a>
-            <a
-              href={`https://wa.me/${profileData.phone.replace(/[^0-9]/g, '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-sm rounded-lg transition-colors font-mono"
-            >
-              <Image src="/icons/whatsapp.png" alt="Call/WhatsApp" width={16} height={16} className="object-contain" />
-              {profileData.phone}
-            </a>
-            <a
-              href={profileData.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-sm rounded-lg transition-colors"
-            >
-              <Image src="/icons/linkedin.png" alt="LinkedIn" width={16} height={16} className="object-contain" />
-              LinkedIn
-            </a>
+            <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
+              Get in touch
+            </span>
+
+            <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-950">
+              Let&apos;s build something
+              <br className="hidden sm:block" />
+              meaningful with data.
+            </h2>
+
+            <p className="mt-5 max-w-xl mx-auto text-base sm:text-lg leading-7 text-slate-600">
+              Open to conversations around Data Analytics, Business Intelligence,
+              Applied AI, and opportunities where data can solve real business problems.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-sm rounded-lg transition-colors"
+              >
+                Get in Touch
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+
+              <a
+                href={`https://wa.me/${profileData.phone.replace(/[^0-9]/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-sm rounded-lg transition-colors"
+              >
+                <Image
+                  src="/icons/whatsapp.png"
+                  alt=""
+                  width={17}
+                  height={17}
+                  className="object-contain"
+                />
+                WhatsApp
+              </a>
+
+            </div>
           </div>
         </div>
       </section>

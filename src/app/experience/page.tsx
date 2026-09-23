@@ -1,93 +1,196 @@
 import React from 'react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { experienceData } from '@/data/experience';
-import { Briefcase, CheckCircle2, Calendar, MapPin, Award } from 'lucide-react';
+import {
+  Briefcase,
+  Calendar,
+  MapPin,
+  ArrowUpRight,
+} from 'lucide-react';
 
 export const metadata = {
   title: 'Professional Experience | Raj Hamal',
-  description: 'Detailed work history of Raj Hamal at Apex Himalaya Treks, covering 40+ international expeditions, Google Sheets dashboard tracking, and invoice reconciliations.',
+  description:
+    'Career experience spanning tourism operations, digital marketing, social media, data tracking, and business-focused problem solving.',
 };
 
 export default function ExperiencePage() {
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 space-y-12">
-      <SectionHeader
-        badge="Career History"
-        title="Professional Experience"
-        subtitle="3+ years of operations management, team leadership, financial reconciliation, and data tracking in international tourism."
-      />
+    <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 space-y-10 sm:space-y-14 lg:space-y-16">
+      {/* Page Introduction */}
+      <section className="relative rounded-2xl sm:rounded-3xl bg-slate-50/70 border border-slate-200/60 p-6 sm:p-8 md:p-12 overflow-hidden shadow-2xs">
+        <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 sm:w-80 h-64 sm:h-80 bg-blue-100/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative z-10 max-w-3xl">
+          <SectionHeader
+            badge="Career History"
+            title="Experience shaped by real-world problems."
+            subtitle="From managing international tourism operations in Nepal to working across digital marketing and data-driven environments, each stage has strengthened how I understand problems, work with information, and make decisions."
+          />
+        </div>
+      </section>
 
-      <div className="relative border-l-2 border-blue-200 ml-3 sm:ml-6 space-y-12 pl-6 sm:pl-10">
-        {experienceData.map((exp) => (
-          <div key={exp.id} className="relative group">
-            {/* Timeline Dot */}
-            <div className="absolute -left-[31px] sm:-left-[47px] top-2 w-5 h-5 rounded-full bg-blue-700 border-4 border-white shadow-md group-hover:scale-125 transition-transform"></div>
+      {/* Career Timeline */}
+      <section className="relative space-y-8 sm:space-y-10">
+        {/* Timeline Line */}
+        <div className="absolute left-[7px] sm:left-[15px] top-6 bottom-6 w-px bg-blue-200 hidden sm:block" />
 
-            <div className="uiverse-card-glass rounded-2xl p-6 sm:p-8 space-y-6">
-              {/* Header */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-blue-700 block mb-1">
-                    {exp.type}
-                  </span>
-                  <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-900">
-                    {exp.role}
-                  </h3>
-                  <div className="flex items-center gap-3 text-xs text-slate-500 font-medium mt-1">
-                    <span className="flex items-center gap-1">
-                      <Briefcase className="w-3.5 h-3.5 text-blue-600" />
-                      {exp.company}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-slate-400" />
-                      {exp.location}
+        <div className="space-y-8 sm:space-y-12">
+          {experienceData.map((exp, index) => (
+            <article
+              key={exp.id}
+              className="relative sm:pl-8 lg:pl-10 group"
+            >
+              {/* Timeline Marker Dot */}
+              <div className="hidden sm:flex absolute left-0 top-6 w-[15px] h-[15px] rounded-full bg-white border-[3px] border-blue-600 z-10 group-hover:scale-125 transition-transform" />
+
+              {/* Experience Card Container */}
+              <div className="bg-slate-50/60 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-slate-200/70 shadow-2xs hover:border-blue-200 hover:bg-slate-50/90 transition-all duration-200 space-y-6">
+                {/* Header */}
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-4 pb-5 sm:pb-6 border-b border-slate-200/80">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <span className="text-[11px] font-mono font-bold tracking-[0.18em] uppercase text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+
+                      <span className="h-px w-6 bg-blue-200 hidden sm:inline-block" />
+
+                      <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-slate-500">
+                        {exp.type}
+                      </span>
+                    </div>
+
+                    <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-slate-900 leading-snug">
+                      {exp.role}
+                    </h2>
+
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-2 text-xs sm:text-sm text-slate-600">
+                      <span className="inline-flex items-center gap-1.5 font-semibold text-slate-800">
+                        <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0" />
+                        {exp.company}
+                      </span>
+
+                      <span className="inline-flex items-center gap-1.5 font-medium text-slate-500">
+                        <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 shrink-0" />
+                        {exp.location}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start lg:justify-end pt-1 lg:pt-0">
+                    <span className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-mono font-bold text-blue-700 bg-blue-50 px-2.5 sm:px-3 py-1 rounded-lg border border-blue-100">
+                      <Calendar className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                      {exp.period}
                     </span>
                   </div>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white text-slate-800 text-xs font-mono font-semibold border border-slate-200 shadow-2xs self-start md:self-auto">
-                  <Calendar className="w-3.5 h-3.5 text-blue-600" />
-                  {exp.period}
+                {/* Main Content */}
+                <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-6 sm:gap-8 lg:gap-12 pt-1">
+                  {/* Narrative + Responsibilities */}
+                  <div>
+                    {exp.operationalImpact && (
+                      <p className="text-xs sm:text-sm md:text-base leading-relaxed text-slate-800 font-medium mb-5 sm:mb-6 bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200/60 shadow-2xs">
+                        {exp.operationalImpact}
+                      </p>
+                    )}
+
+                    <h3 className="text-[11px] font-mono font-bold uppercase tracking-[0.16em] text-slate-400 mb-3">
+                      Selected Contributions
+                    </h3>
+
+                    <ul className="space-y-2.5 sm:space-y-3">
+                      {exp.responsibilities.map((resp, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm leading-relaxed text-slate-600"
+                        >
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
+                          <span>{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Evidence / Capabilities */}
+                  <aside className="pt-6 lg:pt-0 border-t lg:border-t-0 lg:border-l border-slate-200/80 lg:pl-8 space-y-6">
+                    <div>
+                      <h3 className="text-[11px] font-mono font-bold uppercase tracking-[0.16em] text-slate-400 mb-3 sm:mb-4">
+                        Capabilities Applied
+                      </h3>
+
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                        {exp.analyticalSkills.map((skill) => (
+                          <div
+                            key={skill}
+                            className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-white border border-slate-200/80 text-[11px] sm:text-xs font-medium text-slate-700 shadow-2xs hover:border-blue-300 transition-colors"
+                          >
+                            <span>{skill}</span>
+                            <ArrowUpRight className="w-3 h-3 text-blue-500 shrink-0" />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Optional evidence block */}
+                    {exp.id === 'tour-manager-apex' && (
+                      <div className="pt-5 sm:pt-6 border-t border-slate-200/80">
+                        <p className="text-[11px] font-mono font-bold uppercase tracking-[0.16em] text-slate-400 mb-3">
+                          Selected Evidence
+                        </p>
+
+                        <div className="grid grid-cols-2 gap-3 sm:gap-4 bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200/60">
+                          <div>
+                            <p className="text-xl sm:text-2xl font-display font-extrabold text-blue-700">
+                              40+
+                            </p>
+                            <p className="text-[11px] sm:text-xs text-slate-600 font-medium mt-0.5">
+                              Expeditions
+                            </p>
+                          </div>
+
+                          <div>
+                            <p className="text-xl sm:text-2xl font-display font-extrabold text-blue-700">
+                              10+
+                            </p>
+                            <p className="text-[11px] sm:text-xs text-slate-600 font-medium mt-0.5">
+                              Team members
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </aside>
                 </div>
               </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-              {/* Impact Highlight */}
-              <div className="bg-blue-50/80 p-4 rounded-xl border border-blue-100 text-blue-900 text-xs font-medium leading-relaxed">
-                <strong>Operational Highlight:</strong> {exp.operationalImpact}
-              </div>
+      {/* Career Thread Section */}
+      <section className="relative rounded-2xl sm:rounded-3xl bg-slate-900 text-white p-6 sm:p-8 md:p-12 overflow-hidden shadow-lg">
+        <div className="absolute top-0 right-0 -mt-16 -mr-16 w-80 sm:w-96 h-80 sm:h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative z-10 max-w-3xl space-y-3 sm:space-y-4">
+          <span className="text-[11px] font-mono font-bold tracking-[0.18em] uppercase text-blue-400 bg-blue-950/80 px-2.5 py-1 rounded-md border border-blue-800/60 inline-block">
+            The common thread
+          </span>
 
-              {/* Detailed Responsibilities */}
-              <div>
-                <h4 className="font-display text-xs font-bold uppercase tracking-wider text-slate-900 mb-3">
-                  Key Responsibilities & Data Deliverables
-                </h4>
-                <ul className="space-y-2.5">
-                  {exp.responsibilities.map((resp, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>{resp}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <h2 className="font-display text-xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white leading-tight uppercase pt-1">
+            Understand the problem.<br />
+            <span className="text-blue-400">Work with the data.</span><br />
+            Improve the decision.
+          </h2>
 
-              {/* Analytical Skills Badges */}
-              <div className="pt-2">
-                <h4 className="font-display text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
-                  Analytical Competencies Applied
-                </h4>
-                <div className="flex flex-wrap gap-1.5">
-                  {exp.analyticalSkills.map((skill) => (
-                    <span key={skill} className="px-2.5 py-1 text-xs font-semibold bg-white text-slate-800 rounded-md border border-slate-200/90 shadow-2xs">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+          <p className="text-xs sm:text-sm md:text-base leading-relaxed text-slate-300 font-sans pt-1 sm:pt-2">
+            My experience in operations gave me practical business context.
+            Digital marketing introduced me to audiences, digital channels,
+            and performance information. Together, these experiences shaped
+            my current focus on Data Analytics, Business Intelligence, and
+            Applied AI.
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }
