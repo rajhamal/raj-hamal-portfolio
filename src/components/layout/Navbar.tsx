@@ -34,40 +34,40 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-200 ${
+      className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm py-3.5'
-          : 'bg-slate-50/80 backdrop-blur-sm border-b border-transparent py-5'
+          ? 'bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-3'
+          : 'bg-slate-50/70 backdrop-blur-sm border-b border-transparent py-4.5'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" className="group flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-blue-700 flex items-center justify-center text-white font-display font-bold text-base shadow-sm group-hover:bg-blue-800 transition-colors">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-700 to-blue-600 flex items-center justify-center text-white font-display font-bold text-sm shadow-md group-hover:scale-105 transition-transform">
             RH
           </div>
           <div className="flex flex-col">
             <span className="font-display font-bold text-slate-900 text-base tracking-tight group-hover:text-blue-700 transition-colors">
               {profileData.displayName}
             </span>
-            <span className="text-[11px] text-slate-500 font-medium tracking-wide uppercase">
+            <span className="text-[10px] text-slate-500 font-semibold tracking-wider uppercase">
               Data Analyst
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+        <nav className="hidden md:flex items-center gap-1 bg-slate-200/40 p-1.5 rounded-2xl border border-slate-200/60 backdrop-blur-xs">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
                   isActive
-                    ? 'text-blue-700 bg-blue-50/80 font-semibold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                    ? 'text-blue-700 bg-white shadow-xs font-bold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
                 }`}
               >
                 {link.label}
@@ -77,17 +77,17 @@ export default function Navbar() {
         </nav>
 
         {/* Action Button: Resume */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-2.5">
           <Link
             href="/resume"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-slate-700 bg-white border border-slate-300 rounded-md hover:bg-slate-50 hover:text-blue-700 transition-all shadow-xs"
+            className="uiverse-btn-glow inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-slate-800 rounded-xl"
           >
             <FileText className="w-3.5 h-3.5 text-blue-600" />
             Resume
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1 px-3.5 py-1.5 text-xs font-semibold text-white bg-blue-700 rounded-md hover:bg-blue-800 transition-all shadow-xs"
+            className="uiverse-btn-shimmer inline-flex items-center gap-1 px-4 py-2 text-xs font-bold text-white bg-blue-700 rounded-xl"
           >
             Contact
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -98,7 +98,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+          className="md:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
           aria-expanded={mobileMenuOpen}
           aria-label="Toggle navigation menu"
         >

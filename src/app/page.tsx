@@ -6,6 +6,7 @@ import HomeHero from '@/components/home/HomeHero';
 import MetricCard from '@/components/ui/MetricCard';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ProjectCard from '@/components/projects/ProjectCard';
+import EducationTimeline from '@/components/ui/EducationTimeline';
 import ToolIcon from '@/components/ui/ToolIcon';
 import { profileData } from '@/data/profile';
 import { projectsData } from '@/data/projects';
@@ -28,7 +29,7 @@ export default function HomePage() {
 
       {/* 3. ABOUT / CAREER TRANSITION NARRATIVE */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl border border-slate-200/90 p-8 sm:p-10 shadow-subtle">
+        <div className="uiverse-card-glass rounded-2xl p-8 sm:p-10">
           <SectionHeader
             badge="Career Narrative"
             title="Operational Problem Solver Transformed into Data Analyst"
@@ -36,7 +37,7 @@ export default function HomePage() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-            <div className="bg-slate-50 p-6 rounded-xl border border-slate-100 space-y-3">
+            <div className="bg-slate-50/90 p-6 rounded-xl border border-slate-100 space-y-3">
               <div className="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">
                 01
               </div>
@@ -46,7 +47,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="bg-slate-50 p-6 rounded-xl border border-slate-100 space-y-3">
+            <div className="bg-slate-50/90 p-6 rounded-xl border border-slate-100 space-y-3">
               <div className="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">
                 02
               </div>
@@ -56,7 +57,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="bg-slate-50 p-6 rounded-xl border border-slate-100 space-y-3">
+            <div className="bg-slate-50/90 p-6 rounded-xl border border-slate-100 space-y-3">
               <div className="w-9 h-9 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">
                 03
               </div>
@@ -73,7 +74,7 @@ export default function HomePage() {
             </span>
             <Link
               href="/about"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-blue-800"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800"
             >
               Read Full Career Background
               <ArrowRight className="w-3.5 h-3.5" />
@@ -108,7 +109,7 @@ export default function HomePage() {
 
       {/* 5. PROFESSIONAL EXPERIENCE SNAPSHOT */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl border border-slate-200/90 p-8 sm:p-10 shadow-subtle">
+        <div className="uiverse-card-glass rounded-2xl p-8 sm:p-10">
           <SectionHeader
             badge="Work History"
             title="Professional Experience"
@@ -126,13 +127,13 @@ export default function HomePage() {
 
           <div className="space-y-6">
             {experienceData.map((exp) => (
-              <div key={exp.id} className="p-6 rounded-xl bg-slate-50 border border-slate-100 hover:border-slate-200 transition-colors">
+              <div key={exp.id} className="p-6 rounded-xl bg-slate-50/90 border border-slate-100 hover:border-slate-200 transition-colors">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                   <div>
                     <h3 className="font-display font-bold text-slate-900 text-lg">{exp.role}</h3>
-                    <p className="text-xs text-blue-700 font-medium">{exp.company} • {exp.location}</p>
+                    <p className="text-xs text-blue-700 font-semibold">{exp.company} • {exp.location}</p>
                   </div>
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-slate-200/80 text-slate-700 self-start sm:self-auto">
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-white text-slate-700 border border-slate-200/80 shadow-2xs self-start sm:self-auto">
                     {exp.period}
                   </span>
                 </div>
@@ -141,7 +142,7 @@ export default function HomePage() {
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {exp.analyticalSkills.map((skill) => (
-                    <span key={skill} className="px-2.5 py-0.5 text-[11px] font-medium bg-white text-slate-700 rounded border border-slate-200">
+                    <span key={skill} className="px-2.5 py-0.5 text-[11px] font-medium bg-white text-slate-700 rounded-md border border-slate-200 shadow-2xs">
                       {skill}
                     </span>
                   ))}
@@ -152,48 +153,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. EDUCATION */}
+      {/* 6. EDUCATION & LEARNING */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          badge="Academic Qualifications"
-          title="Education & Credentials"
-          subtitle="Postgraduate study in Artificial Intelligence and Data Analytics at the University of Bradford."
+          badge="Education & Learning"
+          title="From Tourism to Data & AI"
+          subtitle="A progression from tourism and business foundations to postgraduate study in applied artificial intelligence and data analytics."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {educationData.map((edu) => (
-            <div key={edu.id} className="bg-white p-6 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className={`px-2.5 py-0.5 rounded text-xs font-semibold ${edu.status === 'In Progress' ? 'bg-blue-50 text-blue-700 border border-blue-100' : 'bg-slate-100 text-slate-700'}`}>
-                    {edu.status}
-                  </span>
-                  <span className="text-[11px] font-mono text-slate-500">{edu.period}</span>
-                </div>
-                <h3 className="font-display font-bold text-slate-900 text-base leading-snug">
-                  {edu.degree}
-                </h3>
-                <p className="text-xs font-medium text-blue-700 mt-1">{edu.institution}</p>
-                <p className="text-xs text-slate-500 mt-0.5">{edu.location}</p>
-
-                <p className="text-xs text-slate-600 mt-3 leading-relaxed">
-                  {edu.description}
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-slate-100">
-                <ul className="space-y-1">
-                  {edu.highlights.slice(0, 2).map((h, i) => (
-                    <li key={i} className="text-[11px] text-slate-600 flex items-start gap-1.5">
-                      <span className="text-blue-600 font-bold">•</span>
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
+        <EducationTimeline />
       </section>
 
       {/* 7. TECHNICAL SKILLS GRID */}

@@ -69,21 +69,19 @@ export default function HomeHero() {
           <div className="lg:col-span-7 flex flex-col items-start z-10 pt-2 lg:pt-0">
             {/* Status Badge Pill */}
             <motion.div variants={itemVariants} className="mb-4">
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-slate-200/90 shadow-2xs hover:border-blue-300 transition-colors">
+              <div className="uiverse-badge-neon">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span className="text-xs sm:text-sm font-poppins font-semibold text-slate-800">
-                  MSc Applied AI & Data Analytics • University of Bradford
-                </span>
+                <span>MSc Applied AI & Data Analytics • University of Bradford</span>
               </div>
             </motion.div>
 
             {/* Name Title */}
             <motion.h1
               variants={itemVariants}
-              className="font-poppins font-extrabold text-5xl sm:text-6xl lg:text-7xl text-slate-900 tracking-tight leading-[1.05]"
+              className="font-poppins font-extrabold text-4xl sm:text-6xl lg:text-7xl text-slate-900 tracking-tight leading-[1.05]"
             >
               RAJ HAMAL
             </motion.h1>
@@ -91,7 +89,7 @@ export default function HomeHero() {
             {/* Role Title */}
             <motion.div
               variants={itemVariants}
-              className="mt-3 text-xl sm:text-2xl lg:text-3xl font-poppins font-bold text-blue-700 tracking-tight"
+              className="mt-2.5 sm:mt-3 text-lg sm:text-2xl lg:text-3xl font-poppins font-bold text-blue-700 tracking-tight"
             >
               Data Analyst | Applied AI & Data Analytics
             </motion.div>
@@ -99,7 +97,7 @@ export default function HomeHero() {
             {/* Hero Copy / Tagline */}
             <motion.p
               variants={itemVariants}
-              className="mt-4 text-lg sm:text-xl text-slate-800 font-poppins font-semibold leading-snug max-w-2xl"
+              className="mt-3.5 sm:mt-4 text-base sm:text-xl text-slate-800 font-poppins font-semibold leading-snug max-w-2xl"
             >
               Turning data into insights, dashboards, and better business decisions.
             </motion.p>
@@ -107,7 +105,7 @@ export default function HomeHero() {
             {/* Bio Statement */}
             <motion.p
               variants={itemVariants}
-              className="mt-3 text-base sm:text-lg text-slate-600 font-sans leading-relaxed max-w-2xl"
+              className="mt-2.5 sm:mt-3 text-sm sm:text-lg text-slate-600 font-sans leading-relaxed max-w-2xl"
             >
               3+ years of real-world operations and client-facing experience, now building a career in data analytics and applied AI.
             </motion.p>
@@ -115,21 +113,21 @@ export default function HomeHero() {
             {/* Location Pill */}
             <motion.div
               variants={itemVariants}
-              className="mt-4 flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-lg border border-slate-200/90 shadow-2xs font-sans text-xs text-slate-600 font-medium"
+              className="mt-3.5 sm:mt-4 flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-lg border border-slate-200/90 shadow-2xs font-sans text-xs text-slate-600 font-medium"
             >
-              <MapPin className="w-3.5 h-3.5 text-blue-600" />
+              <MapPin className="w-3.5 h-3.5 text-blue-600 shrink-0" />
               <span>{profileData.location}</span>
             </motion.div>
 
             {/* Action CTAs & Social Links */}
             <motion.div
               variants={itemVariants}
-              className="mt-6 flex flex-wrap items-center gap-3.5 w-full sm:w-auto"
+              className="mt-6 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 w-full sm:w-auto"
             >
               {/* Primary CTA */}
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-700 hover:bg-blue-800 text-white font-poppins font-bold text-sm sm:text-base rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                className="uiverse-btn-shimmer inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-700 hover:bg-blue-800 text-white font-poppins font-bold text-sm sm:text-base rounded-xl w-full sm:w-auto text-center"
               >
                 Explore Projects
                 <ArrowRight className="w-4 h-4" />
@@ -138,22 +136,22 @@ export default function HomeHero() {
               {/* Secondary CTA */}
               <Link
                 href="/resume"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-800 border border-slate-300/90 font-poppins font-bold text-sm sm:text-base rounded-xl transition-all duration-200 shadow-2xs hover:border-slate-400 hover:-translate-y-0.5"
+                className="uiverse-btn-glow inline-flex items-center justify-center gap-2 px-6 py-3.5 text-slate-800 font-poppins font-bold text-sm sm:text-base rounded-xl w-full sm:w-auto text-center"
               >
                 <FileText className="w-4.5 h-4.5 text-blue-600" />
                 View Resume
               </Link>
 
               {/* Social Icons: LinkedIn | GitHub */}
-              <div className="flex items-center gap-2 ml-auto sm:ml-2">
+              <div className="flex items-center justify-center gap-2 pt-1 sm:pt-0 sm:ml-2">
                 <a
                   href={profileData.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3.5 py-2.5 bg-white hover:bg-blue-50 rounded-xl border border-slate-200 hover:border-blue-300 transition-all shadow-2xs font-poppins font-semibold text-xs text-slate-700 group"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3.5 py-2.5 bg-white hover:bg-blue-50 rounded-xl border border-slate-200 hover:border-blue-300 transition-all shadow-2xs font-poppins font-semibold text-xs text-slate-700 group"
                   title="LinkedIn Profile"
                 >
-                  <Image src="/icons/linkedin.png" alt="LinkedIn" width={18} height={18} className="object-contain group-hover:scale-105 transition-transform" />
+                  <Image src="/icons/linkedin.png" alt="LinkedIn" width={18} height={18} className="object-contain group-hover:scale-105 transition-transform shrink-0" />
                   <span>LinkedIn</span>
                 </a>
                 <span className="text-slate-300 font-light">|</span>
@@ -161,10 +159,10 @@ export default function HomeHero() {
                   href={profileData.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3.5 py-2.5 bg-white hover:bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-400 transition-all shadow-2xs font-poppins font-semibold text-xs text-slate-700 group"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3.5 py-2.5 bg-white hover:bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-400 transition-all shadow-2xs font-poppins font-semibold text-xs text-slate-700 group"
                   title="GitHub Profile"
                 >
-                  <Github className="w-4.5 h-4.5 text-slate-800 group-hover:scale-105 transition-transform" />
+                  <Github className="w-4.5 h-4.5 text-slate-800 group-hover:scale-105 transition-transform shrink-0" />
                   <span>GitHub</span>
                 </a>
               </div>

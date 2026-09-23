@@ -36,7 +36,7 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
         {/* Contact Information Sidebar */}
         <div className="space-y-6">
-          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/90 shadow-subtle space-y-6">
+          <div className="uiverse-card-glass p-6 sm:p-8 rounded-2xl space-y-6">
             <h3 className="font-display font-bold text-lg text-slate-900 border-b border-slate-100 pb-3">
               Direct Contact Details
             </h3>
@@ -86,7 +86,7 @@ export default function ContactPage() {
                   href={profileData.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 text-slate-800 hover:text-blue-700 text-xs font-semibold border border-slate-200 transition-colors"
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-800 hover:text-blue-700 text-xs font-semibold border border-slate-200 transition-colors"
                 >
                   <Linkedin className="w-4 h-4 text-blue-600" />
                   Connect on LinkedIn
@@ -95,7 +95,7 @@ export default function ContactPage() {
                   href={profileData.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-800 text-xs font-semibold border border-slate-200 transition-colors"
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-800 text-xs font-semibold border border-slate-200 transition-colors"
                 >
                   <Github className="w-4 h-4 text-slate-800" />
                   Follow on GitHub
@@ -107,7 +107,7 @@ export default function ContactPage() {
 
         {/* Contact Form */}
         <div className="lg:col-span-2">
-          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/90 shadow-subtle">
+          <div className="uiverse-card-glass p-8 sm:p-10 rounded-2xl">
             {submitted ? (
               <div className="text-center py-12 space-y-4">
                 <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
@@ -148,7 +148,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Sarah Jenkins"
-                      className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-blue-600 text-slate-900 placeholder:text-slate-400"
+                      className="uiverse-input"
                     />
                   </div>
 
@@ -162,7 +162,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.g. s.jenkins@company.co.uk"
-                      className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-blue-600 text-slate-900 placeholder:text-slate-400"
+                      className="uiverse-input"
                     />
                   </div>
                 </div>
@@ -177,7 +177,7 @@ export default function ContactPage() {
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="e.g. Data Analyst Role / Business Intelligence Opportunity"
-                    className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-blue-600 text-slate-900 placeholder:text-slate-400"
+                    className="uiverse-input"
                   />
                 </div>
 
@@ -191,14 +191,14 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Write your message here..."
-                    className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:outline-none focus:border-blue-600 text-slate-900 placeholder:text-slate-400"
+                    className="uiverse-input resize-none"
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-sm rounded-lg transition-all shadow-xs disabled:opacity-50"
+                  className="uiverse-btn-shimmer inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm rounded-xl disabled:opacity-50"
                 >
                   {loading ? 'Sending Message...' : 'Send Message'}
                   <Send className="w-4 h-4" />

@@ -21,7 +21,7 @@ export default function CertificationsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {certificationsData.map((cert) => (
-          <div key={cert.id} className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-subtle flex flex-col justify-between space-y-6">
+          <div key={cert.id} className="uiverse-card-glass rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="flex items-center justify-between gap-2">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-xs font-semibold border border-blue-100">
