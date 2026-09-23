@@ -34,16 +34,14 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-3.5'
-          : 'bg-slate-50/80 backdrop-blur-sm border-b border-transparent py-4.5'
+      className={`sticky top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200/90 ${
+        scrolled ? 'shadow-sm py-3' : 'py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo - Just "Raj Hamal", NO box icon */}
         <Link href="/" className="group flex flex-col justify-center">
-          <span className="font-poppins font-extrabold text-xl sm:text-2xl lg:text-3xl text-slate-900 tracking-tight group-hover:text-blue-700 transition-colors leading-none">
+          <span className="font-poppins font-extrabold text-xl sm:text-2xl lg:text-3xl text-slate-900 tracking-tight group-hover:text-blue-600 transition-colors leading-none">
             Raj Hamal
           </span>
           <span className="text-[10px] sm:text-xs text-slate-500 font-semibold tracking-widest uppercase mt-1">
@@ -51,24 +49,24 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Navigation Links - NO background box, clean underline indicator */}
-        <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
+        {/* Desktop Navigation Links - Clean underline indicator & proper spacing */}
+        <nav className="hidden md:flex items-center space-x-5 lg:space-x-8">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`group relative py-1.5 text-sm lg:text-base font-poppins font-bold transition-all duration-200 ${
+                className={`group relative py-2 text-sm lg:text-base font-poppins font-bold transition-all duration-200 ${
                   isActive
-                    ? 'text-blue-700 font-extrabold'
+                    ? 'text-blue-600'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 {link.label}
                 {/* Simple active underline bar */}
                 <span
-                  className={`absolute bottom-0 left-0 w-full h-[2.5px] bg-blue-700 rounded-full transition-transform duration-200 origin-left ${
+                  className={`absolute bottom-0 left-0 w-full h-[2.5px] bg-blue-600 rounded-full transition-transform duration-200 origin-left ${
                     isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                   }`}
                 />
@@ -77,21 +75,21 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Desktop Action Buttons */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Desktop Action Buttons - Clean, optimized Resume & Contact buttons */}
+        <div className="hidden md:flex items-center gap-3 shrink-0">
           <Link
             href="/resume"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs lg:text-sm font-poppins font-bold text-slate-800 bg-white border border-slate-300 rounded-xl hover:border-slate-400 hover:bg-slate-50 transition-all shadow-2xs"
+            className="inline-flex items-center gap-2 px-4 py-2 text-xs lg:text-sm font-poppins font-semibold text-slate-700 bg-slate-100/90 hover:bg-slate-200/80 border border-slate-200/90 hover:border-slate-300 rounded-full transition-all duration-200 shadow-2xs hover:shadow-xs shrink-0"
           >
-            <FileText className="w-4 h-4 text-blue-600" />
-            Resume
+            <FileText className="w-4 h-4 text-blue-600 shrink-0" />
+            <span>Resume</span>
           </Link>
           <Link
             href="/contact"
-            className="uiverse-btn-shimmer inline-flex items-center gap-1 px-4.5 py-2 text-xs lg:text-sm font-poppins font-bold text-white bg-blue-700 rounded-xl shadow-xs"
+            className="group inline-flex items-center gap-1.5 px-5 py-2 text-xs lg:text-sm font-poppins font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full transition-all duration-200 shadow-xs hover:shadow-md hover:scale-[1.02] active:scale-[0.98] shrink-0"
           >
-            Contact
-            <ArrowUpRight className="w-4 h-4" />
+            <span>Contact</span>
+            <ArrowUpRight className="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
