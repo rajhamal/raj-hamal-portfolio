@@ -86,35 +86,19 @@ body {
   transform: translateY(0);
 }
 
-/* 2. Uiverse Glow Rim Secondary Button */
+/* 2. Uiverse Secondary Button */
 .uiverse-btn-glow {
   position: relative;
   z-index: 1;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   background: #ffffff;
-  border: 1px solid rgba(203, 213, 225, 0.8);
-}
-
-.uiverse-btn-glow::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, #2563eb, #3b82f6, #6366f1, #0284c7);
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  filter: blur(8px);
-  transition: opacity 0.3s ease;
-}
-
-.uiverse-btn-glow:hover::after {
-  opacity: 0.65;
+  border: 1px solid rgba(203, 213, 225, 0.9);
 }
 
 .uiverse-btn-glow:hover {
   border-color: rgba(59, 130, 246, 0.5);
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
 }
 
 /* 3. Uiverse Futuristic Glass Card */

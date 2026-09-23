@@ -119,50 +119,57 @@ export default function HomeHero() {
               <span>{profileData.location}</span>
             </motion.div>
 
-            {/* Action CTAs & Social Links */}
+            {/* Action CTAs & Social Links with Clean Visual Hierarchy */}
             <motion.div
               variants={itemVariants}
-              className="mt-6 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 w-full sm:w-auto"
+              className="mt-6 flex flex-col gap-4 w-full sm:w-auto"
             >
-              {/* Primary CTA */}
-              <Link
-                href="/projects"
-                className="uiverse-btn-shimmer inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-700 hover:bg-blue-800 text-white font-poppins font-bold text-sm sm:text-base rounded-xl w-full sm:w-auto text-center"
-              >
-                Explore Projects
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              {/* Primary & Secondary Action CTAs Row */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+                {/* Primary Action Button */}
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-700 hover:bg-blue-800 active:scale-[0.98] text-white font-poppins font-bold text-sm sm:text-base rounded-xl transition-all shadow-sm hover:shadow-md text-center group shrink-0"
+                >
+                  <span>Explore Projects</span>
+                  <ArrowRight className="w-4.5 h-4.5 group-hover:translate-x-1 transition-transform" />
+                </Link>
 
-              {/* Secondary CTA */}
-              <Link
-                href="/resume"
-                className="uiverse-btn-glow inline-flex items-center justify-center gap-2 px-6 py-3.5 text-slate-800 font-poppins font-bold text-sm sm:text-base rounded-xl w-full sm:w-auto text-center"
-              >
-                <FileText className="w-4.5 h-4.5 text-blue-600" />
-                View Resume
-              </Link>
+                {/* Secondary Action Button - Clean outlined, NO heat map glow */}
+                <Link
+                  href="/resume"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-slate-50 active:scale-[0.98] text-slate-800 font-poppins font-bold text-sm sm:text-base rounded-xl border border-slate-300 hover:border-slate-400 transition-all shadow-2xs hover:shadow-xs text-center shrink-0"
+                >
+                  <FileText className="w-4.5 h-4.5 text-blue-600" />
+                  <span>View Resume</span>
+                </Link>
+              </div>
 
-              {/* Social Icons: LinkedIn | GitHub */}
-              <div className="flex items-center justify-center gap-2 pt-1 sm:pt-0 sm:ml-2">
+              {/* Social Profiles Row (Below Primary CTAs for clean visual hierarchy) */}
+              <div className="flex items-center gap-2.5 pt-1">
+                <span className="text-xs font-poppins font-semibold text-slate-400 uppercase tracking-wider shrink-0">
+                  Connect:
+                </span>
+
                 <a
                   href={profileData.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3.5 py-2.5 bg-white hover:bg-blue-50 rounded-xl border border-slate-200 hover:border-blue-300 transition-all shadow-2xs font-poppins font-semibold text-xs text-slate-700 group"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 bg-white hover:bg-blue-50/80 rounded-lg border border-slate-200/90 hover:border-blue-300 transition-all shadow-2xs text-slate-700 hover:text-blue-700 font-poppins font-semibold text-xs group"
                   title="LinkedIn Profile"
                 >
-                  <Image src="/icons/linkedin.png" alt="LinkedIn" width={18} height={18} className="object-contain group-hover:scale-105 transition-transform shrink-0" />
+                  <Image src="/icons/linkedin.png" alt="LinkedIn" width={16} height={16} className="object-contain group-hover:scale-110 transition-transform shrink-0" />
                   <span>LinkedIn</span>
                 </a>
-                <span className="text-slate-300 font-light">|</span>
+
                 <a
                   href={profileData.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3.5 py-2.5 bg-white hover:bg-slate-100 rounded-xl border border-slate-200 hover:border-slate-400 transition-all shadow-2xs font-poppins font-semibold text-xs text-slate-700 group"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 bg-white hover:bg-slate-100/90 rounded-lg border border-slate-200/90 hover:border-slate-400 transition-all shadow-2xs text-slate-700 hover:text-slate-900 font-poppins font-semibold text-xs group"
                   title="GitHub Profile"
                 >
-                  <Github className="w-4.5 h-4.5 text-slate-800 group-hover:scale-105 transition-transform shrink-0" />
+                  <Github className="w-4 h-4 text-slate-800 group-hover:scale-110 transition-transform shrink-0" />
                   <span>GitHub</span>
                 </a>
               </div>
