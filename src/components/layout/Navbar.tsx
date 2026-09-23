@@ -36,69 +36,70 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-3'
-          : 'bg-slate-50/70 backdrop-blur-sm border-b border-transparent py-4.5'
+          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-3.5'
+          : 'bg-slate-50/80 backdrop-blur-sm border-b border-transparent py-4.5'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo */}
-        <Link href="/" className="group flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-700 to-blue-600 flex items-center justify-center text-white font-display font-bold text-sm shadow-md group-hover:scale-105 transition-transform">
-            RH
-          </div>
-          <div className="flex flex-col">
-            <span className="font-display font-bold text-slate-900 text-base tracking-tight group-hover:text-blue-700 transition-colors">
-              {profileData.displayName}
-            </span>
-            <span className="text-[10px] text-slate-500 font-semibold tracking-wider uppercase">
-              Data Analyst
-            </span>
-          </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Brand Logo - Just "Raj Hamal", NO box icon */}
+        <Link href="/" className="group flex flex-col justify-center">
+          <span className="font-poppins font-extrabold text-xl sm:text-2xl lg:text-3xl text-slate-900 tracking-tight group-hover:text-blue-700 transition-colors leading-none">
+            Raj Hamal
+          </span>
+          <span className="text-[10px] sm:text-xs text-slate-500 font-semibold tracking-widest uppercase mt-1">
+            Data Analyst
+          </span>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 bg-slate-200/40 p-1.5 rounded-2xl border border-slate-200/60 backdrop-blur-xs">
+        {/* Desktop Navigation Links - NO background box, clean underline indicator */}
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                className={`group relative py-1.5 text-sm lg:text-base font-poppins font-bold transition-all duration-200 ${
                   isActive
-                    ? 'text-blue-700 bg-white shadow-xs font-bold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+                    ? 'text-blue-700 font-extrabold'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 {link.label}
+                {/* Simple active underline bar */}
+                <span
+                  className={`absolute bottom-0 left-0 w-full h-[2.5px] bg-blue-700 rounded-full transition-transform duration-200 origin-left ${
+                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`}
+                />
               </Link>
             );
           })}
         </nav>
 
-        {/* Action Button: Resume */}
-        <div className="hidden md:flex items-center gap-2.5">
+        {/* Desktop Action Buttons */}
+        <div className="hidden md:flex items-center gap-3">
           <Link
             href="/resume"
-            className="uiverse-btn-glow inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-slate-800 rounded-xl"
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs lg:text-sm font-poppins font-bold text-slate-800 bg-white border border-slate-300 rounded-xl hover:border-slate-400 hover:bg-slate-50 transition-all shadow-2xs"
           >
-            <FileText className="w-3.5 h-3.5 text-blue-600" />
+            <FileText className="w-4 h-4 text-blue-600" />
             Resume
           </Link>
           <Link
             href="/contact"
-            className="uiverse-btn-shimmer inline-flex items-center gap-1 px-4 py-2 text-xs font-bold text-white bg-blue-700 rounded-xl"
+            className="uiverse-btn-shimmer inline-flex items-center gap-1 px-4.5 py-2 text-xs lg:text-sm font-poppins font-bold text-white bg-blue-700 rounded-xl shadow-xs"
           >
             Contact
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile Menu Button */}
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+          className="md:hidden p-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
           aria-expanded={mobileMenuOpen}
           aria-label="Toggle navigation menu"
         >
@@ -106,20 +107,20 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 shadow-lg">
-          <nav className="flex flex-col space-y-1">
+        <div className="md:hidden bg-white border-b border-slate-200 px-6 pt-4 pb-8 shadow-xl">
+          <nav className="flex flex-col space-y-2">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3 py-2 rounded-md text-base font-medium ${
+                  className={`py-2.5 px-3 rounded-xl text-lg font-poppins font-bold border-l-4 transition-all ${
                     isActive
-                      ? 'text-blue-700 bg-blue-50 font-semibold'
-                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-50'
+                      ? 'text-blue-700 bg-blue-50/70 border-blue-700'
+                      : 'text-slate-700 hover:text-slate-900 border-transparent hover:bg-slate-50'
                   }`}
                 >
                   {link.label}
@@ -127,19 +128,21 @@ export default function Navbar() {
               );
             })}
           </nav>
-          <div className="mt-4 pt-4 border-t border-slate-100 flex items-center gap-3">
+
+          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
             <Link
               href="/resume"
-              className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-700 bg-slate-100 rounded-md hover:bg-slate-200"
+              className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-poppins font-bold text-slate-800 bg-slate-100 rounded-xl hover:bg-slate-200"
             >
               <FileText className="w-4 h-4 text-blue-600" />
               View Resume
             </Link>
             <Link
               href="/contact"
-              className="flex-1 inline-flex items-center justify-center gap-1 px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-md hover:bg-blue-800"
+              className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-3 text-sm font-poppins font-bold text-white bg-blue-700 rounded-xl hover:bg-blue-800"
             >
               Get in Touch
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
