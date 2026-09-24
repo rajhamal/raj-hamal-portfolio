@@ -59,11 +59,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/images/raj-hamal-hero.png', type: 'image/png' },
-      { url: '/icon.png', type: 'image/png' }
+      { url: '/images/raj-hamal-pp-1.jpeg', type: 'image/jpeg' },
+      { url: '/icon.jpeg', type: 'image/jpeg' }
     ],
-    shortcut: '/images/raj-hamal-hero.png',
-    apple: '/images/raj-hamal-hero.png',
+    shortcut: '/images/raj-hamal-pp-1.jpeg',
+    apple: '/images/raj-hamal-pp-1.jpeg',
   },
 };
 
