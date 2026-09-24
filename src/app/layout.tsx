@@ -57,6 +57,14 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: '/images/raj-hamal-profile.jpeg', type: 'image/jpeg' },
+      { url: '/icon.jpeg', type: 'image/jpeg' }
+    ],
+    shortcut: '/images/raj-hamal-profile.jpeg',
+    apple: '/images/raj-hamal-profile.jpeg',
+  },
 };
 
 export default function RootLayout({
