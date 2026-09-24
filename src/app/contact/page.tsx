@@ -28,6 +28,7 @@ export default function ContactPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 space-y-12">
       <SectionHeader
+        as="h1"
         badge="Direct Communication"
         title="Get in Touch"
         subtitle="Open for graduate data analyst roles, business intelligence opportunities, applied AI projects, and professional inquiries."

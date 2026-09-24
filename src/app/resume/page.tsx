@@ -7,6 +7,8 @@ import { certificationsData } from '@/data/certifications';
 import { skillsData } from '@/data/skills';
 import { FileText, Download, Mail, Phone, MapPin, Github, Linkedin, CheckCircle2 } from 'lucide-react';
 
+import ResumeActions from '@/components/ui/ResumeActions';
+
 export const metadata = {
   title: 'Resume & Curriculum Vitae | Raj Hamal',
   description: 'View and download the professional resume of Raj Hamal, MSc Applied AI & Data Analytics student at the University of Bradford.',
@@ -29,15 +31,7 @@ export default function ResumePage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <a
-            href={`mailto:${profileData.email}?subject=Requesting%20PDF%20Resume`}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs rounded-lg transition-colors shadow-xs"
-          >
-            <Download className="w-4 h-4" />
-            Request PDF Copy
-          </a>
-        </div>
+        <ResumeActions />
       </div>
 
       {/* Web Formatted Resume Document Container */}

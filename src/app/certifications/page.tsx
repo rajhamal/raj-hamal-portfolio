@@ -14,6 +14,7 @@ export default function CertificationsPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 space-y-12">
       <SectionHeader
+        as="h1"
         badge="Verified Credentials"
         title="Certifications & Professional Development"
         subtitle="Industry-recognized credentials validating practical competence in data analytics workflows, SQL querying, Tableau dashboarding, and web analytics."

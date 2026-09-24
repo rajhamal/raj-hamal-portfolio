@@ -196,4 +196,27 @@ body {
   background: linear-gradient(180deg, #3b82f6 0%, #cbd5e1 100%);
 }
 
+/* 8. Print Styles */
+@media print {
+  header, footer, nav, button, .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  .shadow-subtle, .shadow-2xs, .shadow-xs, .shadow-md, .shadow-xl {
+    box-shadow: none !important;
+  }
+  .border {
+    border-color: #e2e8f0 !important;
+  }
+}
+
+
 

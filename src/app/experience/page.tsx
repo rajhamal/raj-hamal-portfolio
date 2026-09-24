@@ -22,6 +22,7 @@ export default function ExperiencePage() {
         <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 sm:w-80 h-64 sm:h-80 bg-blue-100/40 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 max-w-3xl">
           <SectionHeader
+            as="h1"
             badge="Career History"
             title="Experience shaped by real-world problems."
             subtitle="From managing international tourism operations in Nepal to working across digital marketing and data-driven environments, each stage has strengthened how I understand problems, work with information, and make decisions."

@@ -6,6 +6,7 @@ interface SectionHeaderProps {
   subtitle?: string;
   centered?: boolean;
   action?: React.ReactNode;
+  as?: 'h1' | 'h2';
 }
 
 export default function SectionHeader({
@@ -14,7 +15,10 @@ export default function SectionHeader({
   subtitle,
   centered = false,
   action,
+  as = 'h2',
 }: SectionHeaderProps) {
+  const HeadingTag = as;
+
   return (
     <div className={`mb-10 lg:mb-12 ${centered ? 'text-center max-w-3xl mx-auto' : 'flex flex-col md:flex-row md:items-end md:justify-between gap-4'}`}>
       <div>
@@ -23,9 +27,9 @@ export default function SectionHeader({
             {badge}
           </span>
         )}
-        <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 tracking-tight">
+        <HeadingTag className="text-2xl sm:text-3xl font-display font-bold text-slate-900 tracking-tight">
           {title}
-        </h2>
+        </HeadingTag>
         {subtitle && (
           <p className="mt-2 text-base text-slate-600 max-w-2xl leading-relaxed">
             {subtitle}

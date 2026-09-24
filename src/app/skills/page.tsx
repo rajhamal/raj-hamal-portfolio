@@ -12,6 +12,7 @@ export default function SkillsPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 space-y-12">
       <SectionHeader
+        as="h1"
         badge="Technical Matrix"
         title="Skills & Tool Stack"
         subtitle="Categorized breakdown of analytical tools, database languages, spreadsheets, business intelligence platforms, and domain competencies."
