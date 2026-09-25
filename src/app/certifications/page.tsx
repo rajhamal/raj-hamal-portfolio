@@ -1,16 +1,26 @@
-import React from 'react';
-import Image from 'next/image';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import SectionHeader from '@/components/ui/SectionHeader';
-import { certificationsData } from '@/data/certifications';
-import { Award, CheckCircle2, ExternalLink, ShieldCheck } from 'lucide-react';
+import { certificationsData as fallbackCertifications } from '@/data/certifications';
+import { getCertificationsData } from '@/lib/data-service';
+import { CertificationItem } from '@/types/portfolio';
+import { CheckCircle2, ExternalLink } from 'lucide-react';
 import ToolIcon from '@/components/ui/ToolIcon';
 
-export const metadata = {
-  title: 'Certifications & Credentials | Raj Hamal',
-  description: 'Verified professional certifications held by Raj Hamal, including the Google Data Analytics Professional Certificate and Google Analytics certifications.',
-};
-
 export default function CertificationsPage() {
+  const [certs, setCerts] = useState<CertificationItem[]>(fallbackCertifications);
+
+  useEffect(() => {
+    async function load() {
+      const data = await getCertificationsData();
+      if (data && data.length > 0) {
+        setCerts(data);
+      }
+    }
+    load();
+  }, []);
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 space-y-12">
       <SectionHeader
@@ -21,7 +31,7 @@ export default function CertificationsPage() {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {certificationsData.map((cert) => (
+        {certs.map((cert) => (
           <div key={cert.id} className="uiverse-card-glass rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="flex items-center justify-between gap-2">

@@ -7,16 +7,34 @@ import { certificationsData as fallbackCertifications } from '@/data/certificati
 import { skillsData as fallbackSkills } from '@/data/skills';
 import { Profile, ProjectItem, ExperienceItem, EducationItem, CertificationItem, SkillCategory } from '@/types/portfolio';
 
+// Local storage key helpers for client side live updates
+const KEYS = {
+  PROFILE: 'raj_cms_profile',
+  PROJECTS: 'raj_cms_projects',
+  EXPERIENCE: 'raj_cms_experience',
+  EDUCATION: 'raj_cms_education',
+  CERTIFICATIONS: 'raj_cms_certifications',
+  SKILLS: 'raj_cms_skills',
+  ABOUT: 'raj_cms_about',
+};
+
+// 1. PROFILE / SITE SETTINGS
 export async function getProfileData(): Promise<Profile> {
+  if (typeof window !== 'undefined') {
+    const cached = localStorage.getItem(KEYS.PROFILE);
+    if (cached) {
+      try { return JSON.parse(cached); } catch {}
+    }
+  }
+
   if (!isSupabaseConfigured()) return fallbackProfile;
 
   try {
     const supabase = createClient();
     const { data, error } = await supabase.from('site_settings').select('*').limit(1).single();
-
     if (error || !data) return fallbackProfile;
 
-    return {
+    const res: Profile = {
       fullName: data.full_name || fallbackProfile.fullName,
       displayName: data.display_name || fallbackProfile.displayName,
       title: data.professional_title || fallbackProfile.title,
@@ -32,12 +50,50 @@ export async function getProfileData(): Promise<Profile> {
       narrative: fallbackProfile.narrative,
       metrics: fallbackProfile.metrics,
     };
+    return res;
   } catch {
     return fallbackProfile;
   }
 }
 
+export async function saveProfileData(profile: Profile): Promise<void> {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(KEYS.PROFILE, JSON.stringify(profile));
+  }
+
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createClient();
+      await supabase.from('site_settings').upsert({
+        id: '00000000-0000-0000-0000-000000000001',
+        full_name: profile.fullName,
+        display_name: profile.displayName,
+        professional_title: profile.title,
+        tagline: profile.tagline,
+        domain: profile.domain,
+        location: profile.location,
+        email: profile.email,
+        phone: profile.phone,
+        linkedin_url: profile.linkedinUrl,
+        github_url: profile.githubUrl,
+        short_bio: profile.bio,
+        updated_at: new Date().toISOString(),
+      });
+    } catch (e) {
+      console.error('Supabase profile save error:', e);
+    }
+  }
+}
+
+// 2. PROJECTS
 export async function getProjectsData(): Promise<ProjectItem[]> {
+  if (typeof window !== 'undefined') {
+    const cached = localStorage.getItem(KEYS.PROJECTS);
+    if (cached) {
+      try { return JSON.parse(cached); } catch {}
+    }
+  }
+
   if (!isSupabaseConfigured()) return fallbackProjects;
 
   try {
@@ -82,12 +138,26 @@ export async function getProjectsData(): Promise<ProjectItem[]> {
   }
 }
 
+export async function saveProjectsData(projects: ProjectItem[]): Promise<void> {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(KEYS.PROJECTS, JSON.stringify(projects));
+  }
+}
+
 export async function getProjectBySlug(slug: string): Promise<ProjectItem | null> {
   const projects = await getProjectsData();
   return projects.find((p) => p.slug === slug) || null;
 }
 
+// 3. EXPERIENCE
 export async function getExperienceData(): Promise<ExperienceItem[]> {
+  if (typeof window !== 'undefined') {
+    const cached = localStorage.getItem(KEYS.EXPERIENCE);
+    if (cached) {
+      try { return JSON.parse(cached); } catch {}
+    }
+  }
+
   if (!isSupabaseConfigured()) return fallbackExperience;
 
   try {
@@ -116,7 +186,21 @@ export async function getExperienceData(): Promise<ExperienceItem[]> {
   }
 }
 
+export async function saveExperienceData(experience: ExperienceItem[]): Promise<void> {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(KEYS.EXPERIENCE, JSON.stringify(experience));
+  }
+}
+
+// 4. EDUCATION
 export async function getEducationData(): Promise<EducationItem[]> {
+  if (typeof window !== 'undefined') {
+    const cached = localStorage.getItem(KEYS.EDUCATION);
+    if (cached) {
+      try { return JSON.parse(cached); } catch {}
+    }
+  }
+
   if (!isSupabaseConfigured()) return fallbackEducation;
 
   try {
@@ -144,7 +228,21 @@ export async function getEducationData(): Promise<EducationItem[]> {
   }
 }
 
+export async function saveEducationData(education: EducationItem[]): Promise<void> {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(KEYS.EDUCATION, JSON.stringify(education));
+  }
+}
+
+// 5. CERTIFICATIONS
 export async function getCertificationsData(): Promise<CertificationItem[]> {
+  if (typeof window !== 'undefined') {
+    const cached = localStorage.getItem(KEYS.CERTIFICATIONS);
+    if (cached) {
+      try { return JSON.parse(cached); } catch {}
+    }
+  }
+
   if (!isSupabaseConfigured()) return fallbackCertifications;
 
   try {
@@ -171,7 +269,21 @@ export async function getCertificationsData(): Promise<CertificationItem[]> {
   }
 }
 
+export async function saveCertificationsData(certs: CertificationItem[]): Promise<void> {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(KEYS.CERTIFICATIONS, JSON.stringify(certs));
+  }
+}
+
+// 6. SKILLS
 export async function getSkillsData(): Promise<SkillCategory[]> {
+  if (typeof window !== 'undefined') {
+    const cached = localStorage.getItem(KEYS.SKILLS);
+    if (cached) {
+      try { return JSON.parse(cached); } catch {}
+    }
+  }
+
   if (!isSupabaseConfigured()) return fallbackSkills;
 
   try {
@@ -194,5 +306,28 @@ export async function getSkillsData(): Promise<SkillCategory[]> {
     }));
   } catch {
     return fallbackSkills;
+  }
+}
+
+export async function saveSkillsData(skills: SkillCategory[]): Promise<void> {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(KEYS.SKILLS, JSON.stringify(skills));
+  }
+}
+
+// 7. ABOUT PAGE CMS
+export async function getAboutData(): Promise<any> {
+  if (typeof window !== 'undefined') {
+    const cached = localStorage.getItem(KEYS.ABOUT);
+    if (cached) {
+      try { return JSON.parse(cached); } catch {}
+    }
+  }
+  return null;
+}
+
+export async function saveAboutData(aboutContent: any): Promise<void> {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(KEYS.ABOUT, JSON.stringify(aboutContent));
   }
 }

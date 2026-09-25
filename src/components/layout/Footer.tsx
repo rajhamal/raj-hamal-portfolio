@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import {
   ArrowUp,
   Check,
@@ -16,6 +17,11 @@ import {
 import { profileData } from '@/data/profile';
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   const currentYear = new Date().getFullYear();
   const [copied, setCopied] = useState(false);
 

@@ -1,20 +1,25 @@
-import React from 'react';
-import SectionHeader from '@/components/ui/SectionHeader';
-import { experienceData } from '@/data/experience';
-import {
-  Briefcase,
-  Calendar,
-  MapPin,
-  ArrowUpRight,
-} from 'lucide-react';
+'use client';
 
-export const metadata = {
-  title: 'Professional Experience | Raj Hamal',
-  description:
-    'Career experience spanning tourism operations, digital marketing, social media, data tracking, and business-focused problem solving.',
-};
+import React, { useState, useEffect } from 'react';
+import SectionHeader from '@/components/ui/SectionHeader';
+import { experienceData as fallbackExperience } from '@/data/experience';
+import { getExperienceData } from '@/lib/data-service';
+import { ExperienceItem } from '@/types/portfolio';
+import { Briefcase, Calendar, MapPin, ArrowUpRight } from 'lucide-react';
 
 export default function ExperiencePage() {
+  const [items, setItems] = useState<ExperienceItem[]>(fallbackExperience);
+
+  useEffect(() => {
+    async function load() {
+      const data = await getExperienceData();
+      if (data && data.length > 0) {
+        setItems(data);
+      }
+    }
+    load();
+  }, []);
+
   return (
     <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 space-y-10 sm:space-y-14 lg:space-y-16">
       {/* Page Introduction */}
@@ -36,7 +41,7 @@ export default function ExperiencePage() {
         <div className="absolute left-[7px] sm:left-[15px] top-6 bottom-6 w-px bg-blue-200 hidden sm:block" />
 
         <div className="space-y-8 sm:space-y-12">
-          {experienceData.map((exp, index) => (
+          {items.map((exp, index) => (
             <article
               key={exp.id}
               className="relative sm:pl-8 lg:pl-10 group"
@@ -132,35 +137,6 @@ export default function ExperiencePage() {
                         ))}
                       </div>
                     </div>
-
-                    {/* Optional evidence block */}
-                    {exp.id === 'tour-manager-apex' && (
-                      <div className="pt-5 sm:pt-6 border-t border-slate-200/80">
-                        <p className="text-[11px] font-mono font-bold uppercase tracking-[0.16em] text-slate-400 mb-3">
-                          Selected Evidence
-                        </p>
-
-                        <div className="grid grid-cols-2 gap-3 sm:gap-4 bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200/60">
-                          <div>
-                            <p className="text-xl sm:text-2xl font-display font-extrabold text-blue-700">
-                              40+
-                            </p>
-                            <p className="text-[11px] sm:text-xs text-slate-600 font-medium mt-0.5">
-                              Expeditions
-                            </p>
-                          </div>
-
-                          <div>
-                            <p className="text-xl sm:text-2xl font-display font-extrabold text-blue-700">
-                              10+
-                            </p>
-                            <p className="text-[11px] sm:text-xs text-slate-600 font-medium mt-0.5">
-                              Team members
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
                   </aside>
                 </div>
               </div>

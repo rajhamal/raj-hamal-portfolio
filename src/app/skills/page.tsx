@@ -1,14 +1,24 @@
-import React from 'react';
-import SectionHeader from '@/components/ui/SectionHeader';
-import { skillsData } from '@/data/skills';
-import { CheckCircle2, Code2, Database, BarChart3, Cpu, Users } from 'lucide-react';
+'use client';
 
-export const metadata = {
-  title: 'Technical Skills & Matrix | Raj Hamal',
-  description: 'Explore Raj Hamal\'s technical skill matrix across SQL, Tableau, Google Sheets, R, developing Python capabilities, and operational leadership.',
-};
+import React, { useState, useEffect } from 'react';
+import SectionHeader from '@/components/ui/SectionHeader';
+import { skillsData as fallbackSkills } from '@/data/skills';
+import { getSkillsData } from '@/lib/data-service';
+import { SkillCategory } from '@/types/portfolio';
 
 export default function SkillsPage() {
+  const [categories, setCategories] = useState<SkillCategory[]>(fallbackSkills);
+
+  useEffect(() => {
+    async function load() {
+      const data = await getSkillsData();
+      if (data && data.length > 0) {
+        setCategories(data);
+      }
+    }
+    load();
+  }, []);
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 space-y-12">
       <SectionHeader
@@ -19,15 +29,17 @@ export default function SkillsPage() {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {skillsData.map((category, idx) => (
+        {categories.map((category, idx) => (
           <div key={idx} className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-subtle space-y-6">
             <div className="border-b border-slate-100 pb-4">
               <h3 className="font-display font-bold text-xl text-slate-900">
                 {category.categoryName}
               </h3>
-              <p className="text-xs text-slate-500 mt-1">
-                {category.description}
-              </p>
+              {category.description && (
+                <p className="text-xs text-slate-500 mt-1">
+                  {category.description}
+                </p>
+              )}
             </div>
 
             <div className="space-y-4">

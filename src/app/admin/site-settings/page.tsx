@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Sliders, Save, CheckCircle2 } from 'lucide-react';
-import { getProfileData } from '@/lib/data-service';
+import { getProfileData, saveProfileData } from '@/lib/data-service';
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/client';
 
 export default function AdminSiteSettingsPage() {
@@ -47,37 +47,34 @@ export default function AdminSiteSettingsPage() {
     setLoading(true);
     setMessage(null);
 
-    if (!isSupabaseConfigured()) {
-      setMessage('Demo Mode: Settings updated transiently. Add Supabase env variables to persist to database.');
-      setLoading(false);
-      return;
-    }
-
     try {
-      const supabase = createClient();
-      const { error } = await supabase
-        .from('site_settings')
-        .upsert({
-          id: '00000000-0000-0000-0000-000000000001',
-          full_name: formData.fullName,
-          display_name: formData.displayName,
-          professional_title: formData.title,
-          tagline: formData.tagline,
-          domain: formData.domain,
-          location: formData.location,
-          email: formData.email,
-          phone: formData.phone,
-          linkedin_url: formData.linkedinUrl,
-          github_url: formData.githubUrl,
-          short_bio: formData.bio,
-          updated_at: new Date().toISOString(),
-        });
+      const updatedProfile = {
+        fullName: formData.fullName,
+        displayName: formData.displayName,
+        title: formData.title,
+        tagline: formData.tagline,
+        domain: formData.domain,
+        location: formData.location,
+        email: formData.email,
+        phone: formData.phone,
+        linkedinUrl: formData.linkedinUrl,
+        githubUrl: formData.githubUrl,
+        bio: formData.bio,
+        currentEducation: 'MSc Applied AI & Data Analytics, University of Bradford',
+        narrative: {
+          origin: '3+ years leading high-altitude expedition operations and logistics in Nepal.',
+          transition: 'Performance marketing, audience tracking, and analytics workflows.',
+          vision: 'MSc Applied AI & Data Analytics student at University of Bradford UK.',
+        },
+        metrics: [
+          { label: 'Expeditions Managed', value: '40+', description: 'Zero critical safety breaches' },
+          { label: 'Marketing Growth', value: '35%', description: 'Social media booking conversions' },
+          { label: 'Certifications', value: '3', description: 'Google Analytics & SQL Credentials' },
+        ],
+      };
 
-      if (error) {
-        setMessage(`Error: ${error.message}`);
-      } else {
-        setMessage('Site settings updated successfully!');
-      }
+      await saveProfileData(updatedProfile);
+      setMessage('Site settings updated successfully! Live website reflects changes.');
     } catch (err: any) {
       setMessage(`Error: ${err.message}`);
     } finally {

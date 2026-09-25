@@ -37,9 +37,9 @@ export interface EducationItem {
   institution: string;
   location: string;
   period: string;
-  status: 'Completed' | 'In Progress';
+  status?: string;
   description: string;
-  highlights: string[];
+  highlights?: string[];
 }
 
 export interface ExperienceItem {
@@ -85,14 +85,16 @@ export interface ProjectItem {
   caseStudy: CaseStudyData;
 }
 
+export interface SkillItem {
+  name: string;
+  level?: 'Proficient' | 'Developing' | 'Foundational';
+  context: string;
+}
+
 export interface SkillCategory {
   categoryName: string;
   description: string;
-  skills: {
-    name: string;
-    level?: 'Proficient' | 'Developing' | 'Foundational';
-    context: string;
-  }[];
+  skills: SkillItem[];
 }
 
 export interface CertificationItem {
@@ -101,6 +103,7 @@ export interface CertificationItem {
   issuer: string;
   issueDate: string;
   credentialUrl?: string;
+  badgeUrl?: string;
   topics: string[];
   description: string;
 }

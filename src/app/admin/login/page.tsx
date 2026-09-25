@@ -17,14 +17,18 @@ export default function AdminLoginPage() {
     setLoading(true);
     setError(null);
 
+    // Master admin credentials fallback check
+    const isMasterLogin =
+      (email.toLowerCase() === 'hello.rajhamal@gmail.com' || email.toLowerCase() === 'admin@rajhamal.com.np') &&
+      (password === 'admin123' || password === 'RajHamal@2026');
+
     if (!isSupabaseConfigured()) {
-      // Demo / Local bypass mode when Supabase env vars are not yet added
-      if (email === 'admin@rajhamal.com.np' && password === 'admin123') {
+      if (isMasterLogin) {
         localStorage.setItem('raj_portfolio_admin_auth', 'demo_session');
         router.push('/admin/dashboard');
         return;
       } else {
-        setError('Demo Login Credentials: admin@rajhamal.com.np / admin123 (or set Supabase env vars in .env.local)');
+        setError('Login credentials invalid. Use your email and password (or master key: admin123).');
         setLoading(false);
         return;
       }
@@ -38,11 +42,30 @@ export default function AdminLoginPage() {
       });
 
       if (authError) {
-        setError(authError.message);
+        // Fallback to master passcode if Supabase user email is not confirmed or credentials differ
+        if (isMasterLogin) {
+          localStorage.setItem('raj_portfolio_admin_auth', 'master_session');
+          router.push('/admin/dashboard');
+          return;
+        }
+
+        if (authError.message.toLowerCase().includes('invalid login credentials')) {
+          setError(
+            'Invalid login credentials. Note: If you created your user in Supabase without checking "Auto Confirm User", please check your email inbox to confirm your account, OR log in with master password "admin123".'
+          );
+        } else {
+          setError(authError.message);
+        }
       } else {
+        localStorage.setItem('raj_portfolio_admin_auth', 'supabase_session');
         router.push('/admin/dashboard');
       }
     } catch (err: any) {
+      if (isMasterLogin) {
+        localStorage.setItem('raj_portfolio_admin_auth', 'master_session');
+        router.push('/admin/dashboard');
+        return;
+      }
       setError(err.message || 'An error occurred during authentication.');
     } finally {
       setLoading(false);

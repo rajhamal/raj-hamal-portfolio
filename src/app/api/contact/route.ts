@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/client';
+import { sendContactEmails } from '@/lib/email-service';
 
 export async function POST(request: Request) {
   try {
@@ -13,6 +14,7 @@ export async function POST(request: Request) {
       );
     }
 
+    // 1. Save message to Supabase database table
     if (isSupabaseConfigured()) {
       const supabase = createClient();
       const { error } = await supabase.from('contact_messages').insert([
@@ -27,13 +29,15 @@ export async function POST(request: Request) {
 
       if (error) {
         console.error('Supabase contact insert error:', error);
-        // Still return success to user gracefully
       }
     }
 
+    // 2. Automate Email Sending (Gmail Notification to Raj + Auto-Reply to Visitor with CTAs)
+    await sendContactEmails({ name, email, subject, message });
+
     return NextResponse.json({
       success: true,
-      message: 'Your message has been received successfully.',
+      message: 'Your message has been received successfully. A confirmation email has been sent to your inbox.',
     });
   } catch (error) {
     console.error('Contact API Error:', error);

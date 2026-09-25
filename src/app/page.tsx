@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle2, Award, Briefcase, GraduationCap, Code2, LineChart, ShieldCheck, Mail } from 'lucide-react';
@@ -8,17 +10,43 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import ProjectCard from '@/components/projects/ProjectCard';
 import EducationTimeline from '@/components/ui/EducationTimeline';
 import ToolIcon from '@/components/ui/ToolIcon';
-import { profileData } from '@/data/profile';
-import { projectsData } from '@/data/projects';
-import { experienceData } from '@/data/experience';
-import { educationData } from '@/data/education';
-import { skillsData } from '@/data/skills';
-import { certificationsData } from '@/data/certifications';
+import { profileData as fallbackProfile } from '@/data/profile';
+import { projectsData as fallbackProjects } from '@/data/projects';
+import { experienceData as fallbackExperience } from '@/data/experience';
+import { skillsData as fallbackSkills } from '@/data/skills';
+import { certificationsData as fallbackCertifications } from '@/data/certifications';
+import { getProjectsData, getExperienceData, getSkillsData, getCertificationsData, getProfileData } from '@/lib/data-service';
+import { ProjectItem, ExperienceItem, SkillCategory, CertificationItem, Profile } from '@/types/portfolio';
 
 export default function HomePage() {
-  const primaryProjects = projectsData.filter((p) => p.featured && p.priority <= 3);
-  const additionalProjects = projectsData.filter((p) => !p.featured || p.priority > 3);
-  const googleCert = certificationsData.find((c) => c.id === 'google-data-analytics');
+  const [profile, setProfile] = useState<Profile>(fallbackProfile);
+  const [projects, setProjects] = useState<ProjectItem[]>(fallbackProjects);
+  const [experiences, setExperiences] = useState<ExperienceItem[]>(fallbackExperience);
+  const [skills, setSkills] = useState<SkillCategory[]>(fallbackSkills);
+  const [certs, setCerts] = useState<CertificationItem[]>(fallbackCertifications);
+
+  useEffect(() => {
+    async function loadAll() {
+      const [profD, projD, expD, skillD, certD] = await Promise.all([
+        getProfileData(),
+        getProjectsData(),
+        getExperienceData(),
+        getSkillsData(),
+        getCertificationsData(),
+      ]);
+
+      if (profD) setProfile(profD);
+      if (projD && projD.length > 0) setProjects(projD);
+      if (expD && expD.length > 0) setExperiences(expD);
+      if (skillD && skillD.length > 0) setSkills(skillD);
+      if (certD && certD.length > 0) setCerts(certD);
+    }
+    loadAll();
+  }, []);
+
+  const primaryProjects = projects.filter((p) => p.featured && p.priority <= 3);
+  const additionalProjects = projects.filter((p) => !p.featured || p.priority > 3);
+  const googleCert = certs.find((c) => c.id === 'google-data-analytics' || c.title.toLowerCase().includes('google'));
 
   return (
     <div className="space-y-16 lg:space-y-24 pb-12">
@@ -157,7 +185,7 @@ export default function HomePage() {
           />
 
           <div className="space-y-4">
-            {experienceData.map((exp) => (
+            {experiences.map((exp) => (
               <div key={exp.id} className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/70 hover:border-blue-200 transition-colors shadow-2xs">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                   <div>
@@ -217,7 +245,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {skillsData.slice(0, 3).map((category, idx) => (
+            {skills.slice(0, 3).map((category, idx) => (
               <div key={idx} className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/70 shadow-2xs space-y-4">
                 <div className="flex items-center gap-3 border-b border-slate-100 pb-3">
                   <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
@@ -395,7 +423,7 @@ export default function HomePage() {
               </Link>
 
               <a
-                href={`https://wa.me/${profileData.phone.replace(/[^0-9]/g, '')}`}
+                href={`https://wa.me/${(profile.phone || '').replace(/[^0-9]/g, '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-sm rounded-lg transition-colors"
