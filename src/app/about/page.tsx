@@ -103,7 +103,7 @@ const defaultAbout: AboutData = {
   ukChapterNarrative: [
     "I am currently studying MSc Applied Artificial Intelligence and Data Analytics at the University of Bradford. Moving from professional operations into postgraduate study has given me the opportunity to build a stronger technical foundation while exploring how data and artificial intelligence can be applied to real problems."
   ],
-  ukChapterImageUrl: "/images/about/bradford-university-atrium.jpg",
+  ukChapterImageUrl: "",
   ukChapterImages: [
     "/images/about/bradford-uk-street-1.jpg",
     "/images/about/bradford-uk-city.jpg",
@@ -125,6 +125,14 @@ export default function AboutPage() {
       }
     }
     load();
+
+    const handleUpdate = (e: any) => {
+      if (e.detail) {
+        setData((prev) => ({ ...prev, ...e.detail }));
+      }
+    };
+    window.addEventListener('raj_cms_about_updated', handleUpdate);
+    return () => window.removeEventListener('raj_cms_about_updated', handleUpdate);
   }, []);
 
   return (

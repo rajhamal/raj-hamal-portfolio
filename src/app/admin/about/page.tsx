@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { User, Save, CheckCircle2, Image as ImageIcon, Sparkles, Layers, List, ExternalLink } from 'lucide-react';
 import ImageUploader from '@/components/ui/ImageUploader';
 import RichTextEditor from '@/components/ui/RichTextEditor';
+import { getAboutData, saveAboutData } from '@/lib/data-service';
 
 interface AboutPageContent {
   heroHeadline: string;
@@ -96,7 +97,7 @@ const defaultAboutContent: AboutPageContent = {
   ukChapterNarrative: [
     "I am currently studying MSc Applied Artificial Intelligence and Data Analytics at the University of Bradford. Moving from professional operations into postgraduate study has given me the opportunity to build a stronger technical foundation while exploring how data and artificial intelligence can be applied to real problems."
   ],
-  ukChapterImageUrl: "/images/about/bradford-university-atrium.jpg",
+  ukChapterImageUrl: "",
   ukChapterImages: [
     "/images/about/bradford-uk-street-1.jpg",
     "/images/about/bradford-uk-city.jpg",
@@ -112,25 +113,25 @@ export default function AdminAboutPage() {
   const [savedMessage, setSavedMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    const cached = localStorage.getItem('raj_cms_about');
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached);
-        if (!parsed.ukChapterImages || parsed.ukChapterImages.length === 0) {
-          parsed.ukChapterImages = defaultAboutContent.ukChapterImages;
+    async function load() {
+      const cmsAbout = await getAboutData();
+      if (cmsAbout) {
+        if (!cmsAbout.ukChapterImages || cmsAbout.ukChapterImages.length === 0) {
+          cmsAbout.ukChapterImages = defaultAboutContent.ukChapterImages;
         }
-        if (!parsed.nepalImages || parsed.nepalImages.length === 0) {
-          parsed.nepalImages = defaultAboutContent.nepalImages;
+        if (!cmsAbout.nepalImages || cmsAbout.nepalImages.length === 0) {
+          cmsAbout.nepalImages = defaultAboutContent.nepalImages;
         }
-        setContent({ ...defaultAboutContent, ...parsed });
-        return;
-      } catch {}
+        setContent({ ...defaultAboutContent, ...cmsAbout });
+      } else {
+        setContent(defaultAboutContent);
+      }
     }
-    setContent(defaultAboutContent);
+    load();
   }, []);
 
-  const handleSave = () => {
-    localStorage.setItem('raj_cms_about', JSON.stringify(content));
+  const handleSave = async () => {
+    await saveAboutData(content);
     setSavedMessage('About Page content updated successfully! Live site reflects changes.');
     setTimeout(() => setSavedMessage(null), 3500);
   };

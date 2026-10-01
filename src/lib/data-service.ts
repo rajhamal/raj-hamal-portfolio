@@ -323,11 +323,35 @@ export async function getAboutData(): Promise<any> {
       try { return JSON.parse(cached); } catch {}
     }
   }
-  return null;
+
+  if (!isSupabaseConfigured()) return null;
+
+  try {
+    const supabase = createClient();
+    const { data, error } = await supabase.from('site_settings').select('about_content').limit(1).single();
+    if (error || !data || !data.about_content) return null;
+    return data.about_content;
+  } catch {
+    return null;
+  }
 }
 
 export async function saveAboutData(aboutContent: any): Promise<void> {
   if (typeof window !== 'undefined') {
     localStorage.setItem(KEYS.ABOUT, JSON.stringify(aboutContent));
+    window.dispatchEvent(new CustomEvent('raj_cms_about_updated', { detail: aboutContent }));
+  }
+
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createClient();
+      await supabase.from('site_settings').upsert({
+        id: '00000000-0000-0000-0000-000000000001',
+        about_content: aboutContent,
+        updated_at: new Date().toISOString(),
+      });
+    } catch (e) {
+      console.error('Supabase about save error:', e);
+    }
   }
 }
