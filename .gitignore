@@ -32,3 +32,9 @@ next-env.d.ts
 # OS / Editor
 .DS_Store
 *.pem
+
+# Internal Docs & Spec Files
+.docs/
+0*.md
+10_*.md
+
